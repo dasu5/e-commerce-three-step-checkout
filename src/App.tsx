@@ -1,12 +1,18 @@
-import { BrowserRouter } from "react-router-dom";
+import { Route, Routes } from "react-router";
 
-import MainLayout from "./components/MainLayout";
+import HomePage from "./pages/HomePage";
+import Header from "./components/header/Header";
+import Logo from "../src/assets/logo.jpeg";
 
 function App() {
   return (
-    <BrowserRouter>
-      <MainLayout />
-    </BrowserRouter>
+    <>
+      <Header logo={Logo} username="user@gmail.com" />
+
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+      </Routes>
+    </>
   );
 }
 

@@ -7,20 +7,14 @@ import {
   Typography,
   CssBaseline,
 } from "@mui/material";
+import { Link } from "react-router-dom";
 
 interface IHeaderProps {
   logo: string;
-  handleLogoClick(): void;
   username: string;
-  handleLoginClick(): void;
 }
 
-const Header = ({
-  logo,
-  handleLogoClick,
-  username,
-  handleLoginClick,
-}: IHeaderProps) => {
+const Header = ({ logo, username }: IHeaderProps) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <CssBaseline />
@@ -32,14 +26,11 @@ const Header = ({
         sx={{ zIndex: -1 }}
       >
         <Toolbar sx={{ height: "80px" }}>
-          <IconButton
-            edge="start"
-            size="large"
-            disableRipple
-            onClick={handleLogoClick}
-          >
-            <img src={logo} alt="site logo" width={200} />
-          </IconButton>
+          <Link to="/">
+            <IconButton edge="start" size="large" disableRipple>
+              <img src={logo} alt="site logo" width={200} />
+            </IconButton>
+          </Link>
 
           <Box sx={{ flexGrow: 1 }} />
 
@@ -47,9 +38,7 @@ const Header = ({
             <Typography variant="body1" component="div" mr={2}>
               {username}
             </Typography>
-            <Button variant="outlined" onClick={handleLoginClick}>
-              Login
-            </Button>
+            <Button variant="outlined">Login</Button>
           </Box>
         </Toolbar>
       </AppBar>
