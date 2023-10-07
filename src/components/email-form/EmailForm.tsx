@@ -10,7 +10,7 @@ const EmailForm = () => {
           outSideLabel="Email Address"
           type="email"
           placeholder="example@gmail.com"
-          sx={{ width: "500px" }}
+          sx={{ width: "553px" }}
         />
       </Grid>
       <Grid item pt={2}>
@@ -20,7 +20,11 @@ const EmailForm = () => {
         />
       </Grid>
       <Grid item pt={2}>
-        <Button variant="contained" color="inherit" fullWidth>
+        <Button
+          variant="contained"
+          sx={{ backgroundColor: "#0d1b21" }}
+          fullWidth
+        >
           Next
         </Button>
       </Grid>

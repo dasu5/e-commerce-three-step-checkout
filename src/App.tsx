@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router";
 
 import LoginPage from "./pages/LoginPage";
 import Header from "./components/header/Header";
-import Logo from "../src/assets/logo.jpeg";
+import Logo from "../src/assets/images/logo.jpeg";
 
 function App() {
   return (
