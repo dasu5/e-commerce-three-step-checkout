@@ -14,7 +14,6 @@ const MainLayout = ({ children }: IMainLayoutProps) => {
       flexDirection="column"
       alignItems="center"
       justifyContent="center"
-      pt="50px"
       position="relative"
       height="100vh"
     >

@@ -1,21 +1,18 @@
-import { Button, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { ReactNode } from "react";
 import { CustomButton } from "./LoginOptionButon.styles";
 
 interface ILoginOptionButonProps {
-  loginOptionIcon: ReactNode;
-  loginOptionText: string;
+  icon: ReactNode;
+  label: string;
 }
 
-const LoginOptionButon = ({
-  loginOptionIcon,
-  loginOptionText,
-}: ILoginOptionButonProps) => {
+const LoginOptionButon = ({ icon, label }: ILoginOptionButonProps) => {
   return (
     <CustomButton>
-      {loginOptionIcon}
+      {icon}
       <Typography color="text.primary" sx={{ fontSize: "12px", ml: "10px" }}>
-        {loginOptionText}
+        {label}
       </Typography>
     </CustomButton>
   );

@@ -2,7 +2,11 @@ import { Button, Checkbox, FormControlLabel, Grid } from "@mui/material";
 
 import InputField from "../shared/input-field/InputField";
 
-const EmailForm = () => {
+interface IEmailFormProps {
+  handleNextClick(): void;
+}
+
+const EmailForm = ({ handleNextClick }: IEmailFormProps) => {
   return (
     <form>
       <Grid item width="100%">
@@ -24,6 +28,7 @@ const EmailForm = () => {
           variant="contained"
           sx={{ backgroundColor: "#0d1b21" }}
           fullWidth
+          onClick={handleNextClick}
         >
           Next
         </Button>

@@ -1,4 +1,5 @@
 import { Divider, Grid, Typography } from "@mui/material";
+import { useNavigate } from "react-router";
 
 import EmailForm from "../email-form/EmailForm";
 import { Root } from "./LoginPageContent.styles";
@@ -8,6 +9,12 @@ import { MicrosoftIcon } from "../icons/MicrosoftIcon";
 import { AppleIcon } from "../icons/AppleIcon";
 
 const LoginPageContent = () => {
+  const navigate = useNavigate();
+
+  const handleNextClick = () => {
+    navigate("/grade-confirmation");
+  };
+
   return (
     <Grid display="flex" flexDirection="column" alignItems="center">
       <Grid item xs={12}>
@@ -21,7 +28,7 @@ const LoginPageContent = () => {
         </Typography>
       </Grid>
       <Grid item xs={12} mt={3}>
-        <EmailForm />
+        <EmailForm handleNextClick={handleNextClick} />
       </Grid>
       <Grid item xs={12} mt={3} display="flex">
         <Typography>Already have an account?</Typography>&nbsp;
@@ -39,22 +46,16 @@ const LoginPageContent = () => {
         </Grid>
       </Root>
       <Grid item xs={12} mt={3}>
-        <LoginOptionButon
-          loginOptionIcon={<GoogleIcon />}
-          loginOptionText="Continue with Google"
-        />
+        <LoginOptionButon icon={<GoogleIcon />} label="Continue with Google" />
       </Grid>
       <Grid item xs={12} mt={2}>
         <LoginOptionButon
-          loginOptionIcon={<MicrosoftIcon />}
-          loginOptionText="Continue with Microsoft Account"
+          icon={<MicrosoftIcon />}
+          label="Continue with Microsoft Account"
         />
       </Grid>
       <Grid item xs={12} mt={2}>
-        <LoginOptionButon
-          loginOptionIcon={<AppleIcon />}
-          loginOptionText="Continue with Apple"
-        />
+        <LoginOptionButon icon={<AppleIcon />} label="Continue with Apple" />
       </Grid>
     </Grid>
   );
