@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router";
 
-import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
 import Header from "./components/header/Header";
 import Logo from "../src/assets/logo.jpeg";
 
@@ -10,7 +10,7 @@ function App() {
       <Header logo={Logo} username="user@gmail.com" />
 
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<LoginPage />} />
       </Routes>
     </>
   );
