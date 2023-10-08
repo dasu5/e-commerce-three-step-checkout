@@ -44,6 +44,7 @@ const EmailForm = () => {
               {...field}
               error={errors.username && true}
               helperText={errors.username && errors.username.message}
+              data-testid="email"
             />
           )}
         />
@@ -60,6 +61,7 @@ const EmailForm = () => {
           sx={{ backgroundColor: "#0d1b21", textTransform: "none" }}
           fullWidth
           type="submit"
+          data-testid="on-submit"
         >
           Next
         </Button>

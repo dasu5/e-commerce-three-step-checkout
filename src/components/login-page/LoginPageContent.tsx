@@ -12,7 +12,10 @@ const LoginPageContent = () => {
   return (
     <Grid display="flex" flexDirection="column" alignItems="center">
       <Grid item xs={12}>
-        <PageTitle title="WELCOME TO THE EUKA FAMILY" />
+        <PageTitle
+          title="WELCOME TO THE EUKA FAMILY"
+          data-testid="login-title"
+        />
       </Grid>
       <Grid item xs={12} mt={4}>
         <Typography component="span" variant="body1">
