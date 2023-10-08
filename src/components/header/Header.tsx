@@ -7,14 +7,28 @@ import {
   Typography,
   CssBaseline,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../hooks/ReduxHooks";
+import { localStorageKeys } from "../../types/enums/LocalStorageKeys";
+import { UserSliceActions } from "../../redux/features/user/UserSlice";
 
 interface IHeaderProps {
   logo: string;
-  username: string;
 }
 
-const Header = ({ logo, username }: IHeaderProps) => {
+const Header = ({ logo }: IHeaderProps) => {
+  const { userName } = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    if (userName) {
+      localStorage.removeItem(localStorageKeys.LOGGED_USER);
+      dispatch(UserSliceActions.clearUser());
+      navigate("/");
+    }
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <CssBaseline />
@@ -36,9 +50,11 @@ const Header = ({ logo, username }: IHeaderProps) => {
 
           <Box display="flex" alignItems="center">
             <Typography variant="body1" component="div" mr={2}>
-              {username}
+              {userName ? userName : ""}
             </Typography>
-            <Button variant="outlined">Login</Button>
+            <Button variant="outlined" onClick={handleLogin}>
+              {userName ? "Logout" : "Login"}
+            </Button>
           </Box>
         </Toolbar>
       </AppBar>

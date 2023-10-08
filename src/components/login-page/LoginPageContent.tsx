@@ -1,5 +1,4 @@
 import { Divider, Grid, Typography } from "@mui/material";
-import { useNavigate } from "react-router";
 
 import EmailForm from "../email-form/EmailForm";
 import { Root } from "./LoginPageContent.styles";
@@ -9,12 +8,6 @@ import { MicrosoftIcon } from "../icons/MicrosoftIcon";
 import { AppleIcon } from "../icons/AppleIcon";
 
 const LoginPageContent = () => {
-  const navigate = useNavigate();
-
-  const handleNextClick = () => {
-    navigate("/grade-confirmation");
-  };
-
   return (
     <Grid display="flex" flexDirection="column" alignItems="center">
       <Grid item xs={12}>
@@ -28,7 +21,7 @@ const LoginPageContent = () => {
         </Typography>
       </Grid>
       <Grid item xs={12} mt={3}>
-        <EmailForm handleNextClick={handleNextClick} />
+        <EmailForm />
       </Grid>
       <Grid item xs={12} mt={3} display="flex">
         <Typography>Already have an account?</Typography>&nbsp;

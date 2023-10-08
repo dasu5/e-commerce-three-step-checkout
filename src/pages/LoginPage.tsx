@@ -3,7 +3,7 @@ import LoginPageContent from "../components/login-page/LoginPageContent";
 
 const LoginPage = () => {
   return (
-    <MainLayout>
+    <MainLayout showActions={false}>
       <LoginPageContent />
     </MainLayout>
   );
