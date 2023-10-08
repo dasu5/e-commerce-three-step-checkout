@@ -1,10 +1,10 @@
 import { Route, Routes, useNavigate } from "react-router";
+import { useEffect } from "react";
 
 import LoginPage from "./pages/LoginPage";
 import Header from "./components/header/Header";
 import Logo from "../src/assets/images/logo.jpeg";
 import GradeConfirmationPage from "./pages/GradeConfirmationPage";
-import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "./hooks/ReduxHooks";
 import { localStorageKeys } from "./types/enums/LocalStorageKeys";
 import { UserSliceActions } from "./redux/features/user/UserSlice";
@@ -24,6 +24,7 @@ function App() {
       dispatch(UserSliceActions.setUserName(JSON.parse(user)));
       navigate("/grade-confirmation");
     } else if (user && grade) {
+      dispatch(UserSliceActions.setUserName(JSON.parse(user)));
       dispatch(UserSliceActions.setGrade(JSON.parse(grade)));
       navigate("/subscription");
     }
@@ -44,7 +45,11 @@ function App() {
 
   return (
     <>
-      <Header logo={Logo} handleLogin={handleLogin} />
+      <Header
+        logo={Logo}
+        handleLogin={handleLogin}
+        handleHomeRedirection={handleLogin}
+      />
 
       <Routes>
         <Route path="/" element={<LoginPage />} />

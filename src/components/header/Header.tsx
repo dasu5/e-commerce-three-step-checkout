@@ -7,15 +7,15 @@ import {
   Typography,
   CssBaseline,
 } from "@mui/material";
-import { Link } from "react-router-dom";
 import { useAppSelector } from "../../hooks/ReduxHooks";
 
 interface IHeaderProps {
   logo: string;
   handleLogin(): void;
+  handleHomeRedirection(): void;
 }
 
-const Header = ({ logo, handleLogin }: IHeaderProps) => {
+const Header = ({ logo, handleLogin, handleHomeRedirection }: IHeaderProps) => {
   const { userName } = useAppSelector((state) => state.user);
 
   return (
@@ -29,11 +29,14 @@ const Header = ({ logo, handleLogin }: IHeaderProps) => {
         sx={{ zIndex: -1 }}
       >
         <Toolbar sx={{ height: "80px" }}>
-          <Link to="/">
-            <IconButton edge="start" size="large" disableRipple>
-              <img src={logo} alt="site logo" width={200} />
-            </IconButton>
-          </Link>
+          <IconButton
+            edge="start"
+            size="large"
+            disableRipple
+            onClick={handleHomeRedirection}
+          >
+            <img src={logo} alt="site logo" width={200} />
+          </IconButton>
 
           <Box sx={{ flexGrow: 1 }} />
 
