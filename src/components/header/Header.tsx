@@ -7,27 +7,16 @@ import {
   Typography,
   CssBaseline,
 } from "@mui/material";
-import { Link, useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../hooks/ReduxHooks";
-import { localStorageKeys } from "../../types/enums/LocalStorageKeys";
-import { UserSliceActions } from "../../redux/features/user/UserSlice";
+import { Link } from "react-router-dom";
+import { useAppSelector } from "../../hooks/ReduxHooks";
 
 interface IHeaderProps {
   logo: string;
+  handleLogin(): void;
 }
 
-const Header = ({ logo }: IHeaderProps) => {
+const Header = ({ logo, handleLogin }: IHeaderProps) => {
   const { userName } = useAppSelector((state) => state.user);
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-
-  const handleLogin = () => {
-    if (userName) {
-      localStorage.removeItem(localStorageKeys.LOGGED_USER);
-      dispatch(UserSliceActions.clearUser());
-      navigate("/");
-    }
-  };
 
   return (
     <Box sx={{ flexGrow: 1 }}>

@@ -3,9 +3,38 @@ import { Grid } from "@mui/material";
 import PageTitle from "../shared/page-title/PageTitle";
 import SubscriptionCard from "./SubscriptionCard";
 import { SubscriptionPlanDetails } from "../../data/SubscriptionPlanDetails";
+import { useEffect, useState } from "react";
+import { useAppDispatch } from "../../hooks/ReduxHooks";
+import { UserSliceActions } from "../../redux/features/user/UserSlice";
+import { localStorageKeys } from "../../types/enums/LocalStorageKeys";
 
 const SubscriptionPageContent = () => {
-  const handleOnPlanClick = () => {};
+  const [isSelected, setIsSelected] = useState<boolean>(true);
+  const [selectedPlan, setSelectedPlan] = useState<string>("");
+  const dispatch = useAppDispatch();
+  const subsribedPlan = localStorage.getItem(
+    localStorageKeys.SUBSCRIPTION_PLAN
+  );
+
+  const handleOnPlanClick = (plan: string) => {
+    if (plan === selectedPlan) {
+      setIsSelected(false);
+    } else {
+      setIsSelected(true);
+    }
+  };
+
+  useEffect(() => {
+    if (selectedPlan) {
+      dispatch(UserSliceActions.setSubscribedPlan(selectedPlan));
+    }
+  }, [selectedPlan, isSelected]);
+
+  useEffect(() => {
+    if (subsribedPlan) {
+      dispatch(UserSliceActions.setSubscribedPlan(JSON.parse(subsribedPlan)));
+    }
+  }, [subsribedPlan]);
 
   return (
     <Grid
@@ -29,8 +58,11 @@ const SubscriptionPageContent = () => {
               annualPrice={plan.yearPrice}
               planDetails={plan.details}
               offerDiscount={plan.offerDiscount}
-              isSelected={false}
-              handleOnPlanClick={handleOnPlanClick}
+              isSelected={selectedPlan === plan.id}
+              handleOnPlanClick={() => {
+                handleOnPlanClick(plan.id);
+                setSelectedPlan(plan.id);
+              }}
             />
           );
         })}
