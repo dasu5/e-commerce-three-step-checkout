@@ -3,18 +3,19 @@ import { useState } from "react";
 
 import GradeCard from "./GradeCard";
 import { GradeDetails } from "../../data/GradeDetails";
+import PageTitle from "../shared/page-title/PageTitle";
 
 const GradeConfirmationPageContent = () => {
-  const [selected, setSelected] = useState(false);
-  const [selectedGrade, setSelectedGrade] = useState<string>("");
+  const [selected, setSelected] = useState(true);
+  const [selectedGrade, setSelectedGrade] = useState<string>("Junior");
 
-  const handleOnChangeGradeClick = (gradeId: string) => {
+  const handleOnGradeClick = (gradeId: string) => {
     if (gradeId === selectedGrade) {
-      setSelected(true);
-    } else {
       setSelected(false);
+    } else {
+      setSelected(true);
     }
-    console.log(selectedGrade);
+    console.log(selected);
   };
 
   return (
@@ -26,9 +27,7 @@ const GradeConfirmationPageContent = () => {
       width="50%"
     >
       <Grid item xs={12}>
-        <Typography component="h4" variant="h4" fontWeight={700}>
-          CONFIRM YOUR CHILD'S GRADE LEVEL
-        </Typography>
+        <PageTitle title="CONFIRM YOUR CHILD'S GRADE LEVEL" />
       </Grid>
       <Grid item>
         {GradeDetails.map((item) => (
@@ -38,10 +37,12 @@ const GradeConfirmationPageContent = () => {
               gradeTitle={item.title}
               grades={item.grade}
               gradeDetails={item.description}
-              isSelected={selected}
-              handleOnChangeGradeClick={(e) => {
-                handleOnChangeGradeClick(e.target.value);
-                setSelectedGrade(e.target.value);
+              isSelected={selectedGrade === item.id}
+              handleOnGradeClick={() => {
+                console.log(item.id);
+                setSelectedGrade("");
+                handleOnGradeClick(item.id);
+                setSelectedGrade(item.id);
               }}
             />
           </Grid>

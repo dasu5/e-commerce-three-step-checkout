@@ -17,8 +17,16 @@ const GradeConfirmationPage = () => {
     dispatch(UserSliceActions.clearUser());
   };
 
+  const handleNextPage = () => {
+    navigate("/subscription");
+  };
+
   return (
-    <MainLayout showActions handleGoBack={handleGoBack}>
+    <MainLayout
+      showActions
+      handleGoBack={handleGoBack}
+      handleNextPage={handleNextPage}
+    >
       <Grid display="flex" justifyContent="center">
         <GradeConfirmationPageContent />
       </Grid>

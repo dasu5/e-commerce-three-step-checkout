@@ -1,12 +1,19 @@
-import { Box, Card, CardContent, Chip, Grid, Typography } from "@mui/material";
-import { ChangeEvent } from "react";
+import {
+  Box,
+  Card,
+  CardActionArea,
+  CardContent,
+  Chip,
+  Grid,
+  Typography,
+} from "@mui/material";
 
 interface IGradeCardProps {
   gradeTitle: string;
   gradeDetails?: string;
   grades: string;
   isSelected: boolean;
-  handleOnChangeGradeClick(e: ChangeEvent<HTMLInputElement>): void;
+  handleOnGradeClick(): void;
   id: string;
 }
 
@@ -15,14 +22,13 @@ const GradeCard = ({
   gradeDetails,
   grades,
   isSelected,
-  handleOnChangeGradeClick,
+  handleOnGradeClick,
   id,
 }: IGradeCardProps) => {
   return (
     <Grid item xs={12} sm={6} py={1}>
       <Card
         key={id}
-        onChange={handleOnChangeGradeClick}
         sx={{
           minHeight: 175,
           maxHeight: 175,
@@ -41,68 +47,70 @@ const GradeCard = ({
           borderColor: isSelected ? "orange" : "lightgray",
         }}
       >
-        <Grid
-          item
-          sx={{
-            width: "100%",
-            flex: 1,
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
-          <CardContent
+        <CardActionArea onClick={handleOnGradeClick}>
+          <Grid
+            item
             sx={{
+              width: "100%",
+              flex: 1,
               display: "flex",
-              justifyContent: "space-between",
               flexDirection: "column",
             }}
           >
-            <Grid
-              item
-              display="flex"
-              justifyContent="space-between"
-              sx={{ width: "100%", flex: 1 }}
-            >
-              <Typography sx={{ fontSize: 20, fontWeight: 600 }}>
-                {gradeTitle.toUpperCase()}
-              </Typography>
-              <Box
-                width={50}
-                height={50}
-                sx={{ backgroundColor: "lightgray" }}
-              />
-            </Grid>
-            <Grid
-              item
-              display="flex"
-              justifyContent="space-between"
+            <CardContent
               sx={{
-                flex: 1,
-                pr: "50px",
-                wordWrap: "break-word",
+                display: "flex",
+                justifyContent: "space-between",
+                flexDirection: "column",
               }}
             >
-              {gradeDetails && (
-                <Typography variant="body2">{gradeDetails}</Typography>
-              )}
-            </Grid>
-            <Grid
-              item
-              display="flex"
-              alignContent="flex-end"
-              sx={{
-                flex: 0,
-                mt: gradeDetails ? "15px" : "60px",
-              }}
-            >
-              <Chip
-                label={grades}
-                variant="outlined"
-                sx={{ backgroundColor: "#F6f6ff" }}
-              />
-            </Grid>
-          </CardContent>
-        </Grid>
+              <Grid
+                item
+                display="flex"
+                justifyContent="space-between"
+                sx={{ width: "100%", flex: 1 }}
+              >
+                <Typography sx={{ fontSize: 20, fontWeight: 600 }}>
+                  {gradeTitle.toUpperCase()}
+                </Typography>
+                <Box
+                  width={50}
+                  height={50}
+                  sx={{ backgroundColor: "lightgray" }}
+                />
+              </Grid>
+              <Grid
+                item
+                display="flex"
+                justifyContent="space-between"
+                sx={{
+                  flex: 1,
+                  pr: "50px",
+                  wordWrap: "break-word",
+                }}
+              >
+                {gradeDetails && (
+                  <Typography variant="body2">{gradeDetails}</Typography>
+                )}
+              </Grid>
+              <Grid
+                item
+                display="flex"
+                alignContent="flex-end"
+                sx={{
+                  flex: 0,
+                  mt: gradeDetails ? "15px" : "60px",
+                }}
+              >
+                <Chip
+                  label={grades}
+                  variant="outlined"
+                  sx={{ backgroundColor: "#F6f6ff" }}
+                />
+              </Grid>
+            </CardContent>
+          </Grid>
+        </CardActionArea>
       </Card>
     </Grid>
   );

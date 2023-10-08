@@ -23,8 +23,7 @@ const EmailForm = () => {
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data);
-    dispatch(UserSliceActions.setRegistrationDetails(data.username));
+    dispatch(UserSliceActions.setUserName(data.username));
     navigate("/grade-confirmation");
   };
 

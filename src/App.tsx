@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { useAppDispatch } from "./hooks/ReduxHooks";
 import { localStorageKeys } from "./types/enums/LocalStorageKeys";
 import { UserSliceActions } from "./redux/features/user/UserSlice";
+import SubscriptionPlanPage from "./pages/SubscriptionPlanPage";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -16,7 +17,7 @@ function App() {
 
   useEffect(() => {
     if (user) {
-      dispatch(UserSliceActions.setRegistrationDetails(JSON.parse(user)));
+      dispatch(UserSliceActions.setUserName(JSON.parse(user)));
       navigate("/grade-confirmation");
     }
   }, [user]);
@@ -28,6 +29,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/grade-confirmation" element={<GradeConfirmationPage />} />
+        <Route path="/subscription" element={<SubscriptionPlanPage />} />
       </Routes>
     </>
   );

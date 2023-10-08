@@ -6,14 +6,13 @@ import LoginOptionButon from "../login-option-button/LoginOptionButon";
 import { GoogleIcon } from "../icons/GoogleIcon";
 import { MicrosoftIcon } from "../icons/MicrosoftIcon";
 import { AppleIcon } from "../icons/AppleIcon";
+import PageTitle from "../shared/page-title/PageTitle";
 
 const LoginPageContent = () => {
   return (
     <Grid display="flex" flexDirection="column" alignItems="center">
       <Grid item xs={12}>
-        <Typography component="h4" variant="h4" fontWeight={700}>
-          WELCOME TO THE EUKA FAMILY
-        </Typography>
+        <PageTitle title="WELCOME TO THE EUKA FAMILY" />
       </Grid>
       <Grid item xs={12} mt={4}>
         <Typography component="span" variant="body1">

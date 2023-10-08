@@ -5,14 +5,14 @@ interface IMainLayoutProps {
   children: ReactNode;
   showActions: boolean;
   handleGoBack?(): void;
-  handlePageNext?(): void;
+  handleNextPage?(): void;
 }
 
 const MainLayout = ({
   children,
   showActions = false,
   handleGoBack,
-  handlePageNext,
+  handleNextPage,
 }: IMainLayoutProps) => {
   return (
     <Grid
@@ -27,7 +27,13 @@ const MainLayout = ({
     >
       {children}
 
-      <Grid container display="flex" alignContent="flex-end" mt="20px" pb={5}>
+      <Grid
+        container
+        display="flex"
+        alignContent="flex-end"
+        bottom="0"
+        padding={3}
+      >
         {showActions && (
           <Grid item xs={12} display="flex" justifyContent="space-around">
             <Grid item>
@@ -39,7 +45,7 @@ const MainLayout = ({
               <Button
                 variant="contained"
                 sx={{ backgroundColor: "#0d1b21" }}
-                onClick={handlePageNext}
+                onClick={handleNextPage}
               >
                 Next
               </Button>
