@@ -57,7 +57,7 @@ const EmailForm = () => {
       <Grid item pt={2}>
         <Button
           variant="contained"
-          sx={{ backgroundColor: "#0d1b21" }}
+          sx={{ backgroundColor: "#0d1b21", textTransform: "none" }}
           fullWidth
           type="submit"
         >

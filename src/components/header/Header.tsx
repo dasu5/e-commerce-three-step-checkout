@@ -41,7 +41,11 @@ const Header = ({ logo, handleLogin }: IHeaderProps) => {
             <Typography variant="body1" component="div" mr={2}>
               {userName ? userName : ""}
             </Typography>
-            <Button variant="outlined" onClick={handleLogin}>
+            <Button
+              variant="outlined"
+              onClick={handleLogin}
+              sx={{ textTransform: "none" }}
+            >
               {userName ? "Logout" : "Login"}
             </Button>
           </Box>

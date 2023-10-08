@@ -37,14 +37,18 @@ const MainLayout = ({
         {showActions && (
           <Grid item xs={12} display="flex" justifyContent="space-around">
             <Grid item>
-              <Button variant="outlined" onClick={handleGoBack}>
+              <Button
+                variant="outlined"
+                onClick={handleGoBack}
+                sx={{ textTransform: "none" }}
+              >
                 Go Back
               </Button>
             </Grid>
             <Grid item>
               <Button
                 variant="contained"
-                sx={{ backgroundColor: "#0d1b21" }}
+                sx={{ backgroundColor: "#0d1b21", textTransform: "none" }}
                 onClick={handleNextPage}
               >
                 Next
