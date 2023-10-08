@@ -14,13 +14,17 @@ function App() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const user = localStorage.getItem(localStorageKeys.LOGGED_USER);
+  const grade = localStorage.getItem(localStorageKeys.GRADE);
 
   useEffect(() => {
-    if (user) {
+    if (user && !grade) {
       dispatch(UserSliceActions.setUserName(JSON.parse(user)));
       navigate("/grade-confirmation");
+    } else if (user && grade) {
+      dispatch(UserSliceActions.setGrade(JSON.parse(grade)));
+      navigate("/subscription");
     }
-  }, [user]);
+  }, [user, grade]);
 
   return (
     <>
