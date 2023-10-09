@@ -23,6 +23,7 @@ export const UserSlice = createSlice({
     setUserName: (state, action) => {
       state.userName = action.payload;
       const username = state.userName;
+
       //save the user email in the local storage
       localStorage.setItem(
         localStorageKeys.LOGGED_USER,
@@ -32,12 +33,14 @@ export const UserSlice = createSlice({
     setGrade: (state, action) => {
       state.grade = action.payload;
       const grade = state.grade;
+
       //save the selected grade in the local storage
       localStorage.setItem(localStorageKeys.GRADE, JSON.stringify(grade));
     },
     setSubscribedPlan: (state, action) => {
       state.subscribedPlan = action.payload;
       const plan = state.subscribedPlan;
+
       //save the selected plan in the local storage
       localStorage.setItem(
         localStorageKeys.SUBSCRIPTION_PLAN,
@@ -46,6 +49,7 @@ export const UserSlice = createSlice({
     },
     setStepCount: (state, action) => {
       state.stepNumber = action.payload;
+
       // save the step number completed
       localStorage.setItem(
         localStorageKeys.COMPLETED_STEP,

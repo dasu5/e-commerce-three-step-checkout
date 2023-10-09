@@ -52,6 +52,7 @@ const GradeConfirmationPageContent = () => {
               handleOnGradeClick={() => {
                 handleOnGradeClick(item.id);
               }}
+              data-testid={"SENIOR"}
             />
           </Grid>
         ))}

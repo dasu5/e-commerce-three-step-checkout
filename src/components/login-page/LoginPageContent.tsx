@@ -45,7 +45,7 @@ const LoginPageContent = () => {
         <Grid item xs={12}>
           <PageTitle
             title="WELCOME TO THE EUKA FAMILY"
-            data-testid="login-title"
+            data-testid="LOGIN_PAGE_TITLE"
           />
         </Grid>
         <Grid item xs={12} mt={4}>
@@ -69,7 +69,7 @@ const LoginPageContent = () => {
                   {...field}
                   error={errors.username && true}
                   helperText={errors.username && errors.username.message}
-                  data-testid="email"
+                  data-testid="EMAIL"
                 />
               )}
             />
@@ -86,7 +86,7 @@ const LoginPageContent = () => {
               sx={{ backgroundColor: "#0d1b21", textTransform: "none" }}
               fullWidth
               type="submit"
-              data-testid="on-submit"
+              data-testid="SUBMIT"
             >
               Next
             </Button>
