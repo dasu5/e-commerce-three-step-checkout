@@ -9,9 +9,7 @@ import { UserSliceActions } from "../../redux/features/user/UserSlice";
 import { localStorageKeys } from "../../types/enums/LocalStorageKeys";
 
 const SubscriptionPageContent = () => {
-  const [selectedPlan, setSelectedPlan] = useState<string>(
-    SubscriptionPlanDetails[1].id
-  );
+  const [selectedPlan, setSelectedPlan] = useState<string>();
   const dispatch = useAppDispatch();
   const subscribedPlanLocalStorage = localStorage.getItem(
     localStorageKeys.SUBSCRIPTION_PLAN

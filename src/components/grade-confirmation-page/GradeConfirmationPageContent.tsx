@@ -9,9 +9,7 @@ import { UserSliceActions } from "../../redux/features/user/UserSlice";
 import { localStorageKeys } from "../../types/enums/LocalStorageKeys";
 
 const GradeConfirmationPageContent = () => {
-  const [selectedGrade, setSelectedGrade] = useState<string>(
-    GradeDetails[0].id
-  );
+  const [selectedGrade, setSelectedGrade] = useState<string>();
   const dispatch = useAppDispatch();
   const gradeFromLocalStorage = localStorage.getItem(localStorageKeys.GRADE);
   const { grade } = useAppSelector((state) => state.user);
