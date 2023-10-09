@@ -20,12 +20,16 @@ const ThankYouPageContent = () => {
           <SuccessIcon sx={{ fontSize: "80px" }} />
         </Grid>
         <Grid item mt="25px">
-          <Typography variant="h3" fontWeight={600}>
+          <Typography
+            variant="h3"
+            fontWeight={600}
+            data-testid="PAYMENT_PAGE_TITLE"
+          >
             PAYMENT SUCCESS!
           </Typography>
         </Grid>
         <Grid item mt={3} width="60%">
-          <Typography textAlign="center">
+          <Typography textAlign="center" data-testid="PAYMENT_CONFIRMATION">
             Congrats!<span style={{ fontSize: "20px" }}>&#127881;</span> Your
             payment was successful. Next we will send an email with your details
             and instructions on how to view your course.
