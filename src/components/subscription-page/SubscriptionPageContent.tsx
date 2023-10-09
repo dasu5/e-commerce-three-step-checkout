@@ -51,6 +51,7 @@ const SubscriptionPageContent = () => {
         {SubscriptionPlanDetails.map((plan) => {
           return (
             <SubscriptionCard
+              key={plan.id}
               id={plan.id}
               planTitle={plan.plan}
               months={plan.months}

@@ -16,29 +16,41 @@ function App() {
   const navigate = useNavigate();
   const user = localStorage.getItem(localStorageKeys.LOGGED_USER);
   const grade = localStorage.getItem(localStorageKeys.GRADE);
+  const plan = localStorage.getItem(localStorageKeys.SUBSCRIPTION_PLAN);
+  const stepNumber = localStorage.getItem(localStorageKeys.COMPLETED_STEP);
   const { userName } = useAppSelector((state) => state.user);
 
   // route navigation handling for user to carry on where left off
   useEffect(() => {
-    if (user) {
+    if (user && Number(stepNumber) === 1) {
       dispatch(UserSliceActions.setUserName(JSON.parse(user)));
+      dispatch(UserSliceActions.setStepCount(Number(stepNumber)));
       navigate("/grade-confirmation");
-    } else if (user && grade) {
+    }
+    if (user && grade && Number(stepNumber) === 2) {
       dispatch(UserSliceActions.setUserName(JSON.parse(user)));
       dispatch(UserSliceActions.setGrade(JSON.parse(grade)));
+      dispatch(UserSliceActions.setStepCount(Number(stepNumber)));
       navigate("/subscription");
     }
-  }, [user, grade]);
+    if (user && grade && plan && Number(stepNumber) === 3) {
+      navigate("/thank-you");
+    }
+  }, [user, grade, plan, stepNumber]);
 
   // logout
   const handleLogin = () => {
-    if (userName) {
+    if (userName && Number(stepNumber) !== 3) {
       localStorage.removeItem(localStorageKeys.LOGGED_USER);
       localStorage.removeItem(localStorageKeys.GRADE);
       localStorage.removeItem(localStorageKeys.SUBSCRIPTION_PLAN);
+      localStorage.removeItem(localStorageKeys.COMPLETED_STEP);
       dispatch(UserSliceActions.clearUser());
       dispatch(UserSliceActions.clearGrade());
       dispatch(UserSliceActions.clearSubscribedPlan());
+      dispatch(UserSliceActions.clearStepCount());
+      navigate("/");
+    } else {
       navigate("/");
     }
   };

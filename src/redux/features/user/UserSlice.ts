@@ -6,12 +6,14 @@ interface IUserSlice {
   userName: string | null;
   grade: string | null;
   subscribedPlan: string | null;
+  stepNumber: number;
 }
 
 const initialState: IUserSlice = {
   userName: null,
   grade: null,
   subscribedPlan: null,
+  stepNumber: 0,
 };
 
 export const UserSlice = createSlice({
@@ -42,6 +44,14 @@ export const UserSlice = createSlice({
         JSON.stringify(plan)
       );
     },
+    setStepCount: (state, action) => {
+      state.stepNumber = action.payload;
+      // save the step number completed
+      localStorage.setItem(
+        localStorageKeys.COMPLETED_STEP,
+        JSON.stringify(state.stepNumber)
+      );
+    },
     clearUser: (state) => {
       state.userName = null;
     },
@@ -50,6 +60,9 @@ export const UserSlice = createSlice({
     },
     clearSubscribedPlan: (state) => {
       state.subscribedPlan = null;
+    },
+    clearStepCount: (state) => {
+      state.stepNumber = 0;
     },
   },
 });

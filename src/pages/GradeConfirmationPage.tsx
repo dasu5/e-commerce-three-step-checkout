@@ -10,9 +10,10 @@ import { UserSliceActions } from "../redux/features/user/UserSlice";
 const GradeConfirmationPage = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { grade } = useAppSelector((state) => state.user);
+  const { grade, stepNumber } = useAppSelector((state) => state.user);
 
   const handleGoBack = () => {
+    dispatch(UserSliceActions.setStepCount(stepNumber - 1));
     localStorage.removeItem(localStorageKeys.LOGGED_USER);
     localStorage.removeItem(localStorageKeys.GRADE);
     localStorage.removeItem(localStorageKeys.SUBSCRIPTION_PLAN);
@@ -23,7 +24,10 @@ const GradeConfirmationPage = () => {
   };
 
   const handleNextPage = () => {
-    if (grade) navigate("/subscription");
+    if (grade) {
+      dispatch(UserSliceActions.setStepCount(stepNumber + 1));
+      navigate("/subscription");
+    }
   };
 
   return (

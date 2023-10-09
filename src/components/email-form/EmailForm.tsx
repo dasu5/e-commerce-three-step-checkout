@@ -4,7 +4,7 @@ import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import InputField from "../shared/input-field/InputField";
 import { useNavigate } from "react-router";
 import { EmailValidator } from "../../util/validations/EmailValidator";
-import { useAppDispatch } from "../../hooks/ReduxHooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/ReduxHooks";
 import { UserSliceActions } from "../../redux/features/user/UserSlice";
 
 type Inputs = {
@@ -14,6 +14,7 @@ type Inputs = {
 const EmailForm = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const { stepNumber } = useAppSelector((state) => state.user);
 
   const {
     register,
@@ -24,6 +25,7 @@ const EmailForm = () => {
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     dispatch(UserSliceActions.setUserName(data.username));
+    dispatch(UserSliceActions.setStepCount(stepNumber + 1));
     navigate("/grade-confirmation");
   };
 
