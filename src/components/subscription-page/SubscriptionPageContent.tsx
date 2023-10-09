@@ -4,37 +4,34 @@ import { useEffect, useState } from "react";
 import PageTitle from "../shared/page-title/PageTitle";
 import SubscriptionCard from "./SubscriptionCard";
 import { SubscriptionPlanDetails } from "../../data/SubscriptionPlanDetails";
-import { useAppDispatch } from "../../hooks/ReduxHooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/ReduxHooks";
 import { UserSliceActions } from "../../redux/features/user/UserSlice";
 import { localStorageKeys } from "../../types/enums/LocalStorageKeys";
 
 const SubscriptionPageContent = () => {
-  const [isSelected, setIsSelected] = useState<boolean>(true);
-  const [selectedPlan, setSelectedPlan] = useState<string>("");
+  const [selectedPlan, setSelectedPlan] = useState<string>(
+    SubscriptionPlanDetails[1].id
+  );
   const dispatch = useAppDispatch();
-  const subsribedPlan = localStorage.getItem(
+  const subscribedPlanLocalStorage = localStorage.getItem(
     localStorageKeys.SUBSCRIPTION_PLAN
   );
+  const { subscribedPlan } = useAppSelector((state) => state.user);
 
-  const handleOnPlanClick = (plan: string) => {
-    if (plan === selectedPlan) {
-      setIsSelected(false);
-    } else {
-      setIsSelected(true);
-    }
+  const handleOnPlanClick = (planId: string) => {
+    setSelectedPlan(planId);
+    dispatch(UserSliceActions.setSubscribedPlan(planId));
   };
-
   useEffect(() => {
-    if (selectedPlan) {
-      dispatch(UserSliceActions.setSubscribedPlan(selectedPlan));
+    if (subscribedPlan) {
+      setSelectedPlan(subscribedPlan);
+    } else if (subscribedPlanLocalStorage) {
+      setSelectedPlan(subscribedPlanLocalStorage);
+      dispatch(
+        UserSliceActions.setGrade(JSON.parse(subscribedPlanLocalStorage))
+      );
     }
-  }, [selectedPlan, isSelected]);
-
-  useEffect(() => {
-    if (subsribedPlan) {
-      dispatch(UserSliceActions.setSubscribedPlan(JSON.parse(subsribedPlan)));
-    }
-  }, [subsribedPlan]);
+  }, [subscribedPlanLocalStorage, subscribedPlan]);
 
   return (
     <Grid
@@ -62,7 +59,6 @@ const SubscriptionPageContent = () => {
               isSelected={selectedPlan === plan.id}
               handleOnPlanClick={() => {
                 handleOnPlanClick(plan.id);
-                setSelectedPlan(plan.id);
               }}
             />
           );
