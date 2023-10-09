@@ -40,7 +40,10 @@ const SubscriptionPageContent = () => {
       width="100%"
     >
       <Grid item xs={12} textAlign="center">
-        <PageTitle title="HOW LONG DO YOU NEED TO ACCESS TO EUKA ?" />
+        <PageTitle
+          title="HOW LONG DO YOU NEED TO ACCESS TO EUKA ?"
+          data-testid="PLAN_PAGE_TITLE"
+        />
       </Grid>
       <Grid item display="flex" mt={5}>
         {SubscriptionPlanDetails.map((plan) => {
@@ -58,6 +61,7 @@ const SubscriptionPageContent = () => {
               handleOnPlanClick={() => {
                 handleOnPlanClick(plan.id);
               }}
+              data-testid="TERM_ONE"
             />
           );
         })}

@@ -1,13 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import { localStorageKeys } from "../../../types/enums/LocalStorageKeys";
-
-interface IUserSlice {
-  userName: string | null;
-  grade: string | null;
-  subscribedPlan: string | null;
-  stepNumber: number;
-}
+import { IUserSlice } from "../../../types/interfaces/User";
 
 const initialState: IUserSlice = {
   userName: null,
