@@ -4,37 +4,33 @@ import { useEffect, useState } from "react";
 import GradeCard from "./GradeCard";
 import { GradeDetails } from "../../data/GradeDetails";
 import PageTitle from "../shared/page-title/PageTitle";
-import { useAppDispatch } from "../../hooks/ReduxHooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/ReduxHooks";
 import { UserSliceActions } from "../../redux/features/user/UserSlice";
 import { localStorageKeys } from "../../types/enums/LocalStorageKeys";
 
 const GradeConfirmationPageContent = () => {
-  const [selected, setSelected] = useState(true);
-  const [selectedGrade, setSelectedGrade] = useState<string>("");
+  const [selectedGrade, setSelectedGrade] = useState<string>(
+    GradeDetails[0].id
+  );
   const dispatch = useAppDispatch();
-  const grade = localStorage.getItem(localStorageKeys.GRADE);
+  const gradeFromLocalStorage = localStorage.getItem(localStorageKeys.GRADE);
+  const { grade } = useAppSelector((state) => state.user);
 
   const handleOnGradeClick = (gradeId: string) => {
-    if (gradeId === selectedGrade) {
-      setSelected(false);
-    } else {
-      setSelected(true);
-    }
+    setSelectedGrade(gradeId);
+    dispatch(UserSliceActions.setGrade(gradeId));
   };
 
   useEffect(() => {
-    if (selectedGrade) {
-      dispatch(UserSliceActions.setGrade(selectedGrade));
-    }
-  }, [selected, selectedGrade]);
-
-  useEffect(() => {
+    // initialize selected grade from redux or local storage
     if (grade) {
-      dispatch(UserSliceActions.setGrade(JSON.parse(grade)));
+      setSelectedGrade(grade);
+    } else if (gradeFromLocalStorage) {
+      setSelectedGrade(gradeFromLocalStorage);
+      dispatch(UserSliceActions.setGrade(JSON.parse(gradeFromLocalStorage)));
     }
-  }, [grade]);
+  }, [gradeFromLocalStorage, grade]);
 
-  
   return (
     <Grid
       container
@@ -56,9 +52,7 @@ const GradeConfirmationPageContent = () => {
               gradeDetails={item.description}
               isSelected={selectedGrade === item.id}
               handleOnGradeClick={() => {
-                setSelectedGrade("");
                 handleOnGradeClick(item.id);
-                setSelectedGrade(item.id);
               }}
             />
           </Grid>

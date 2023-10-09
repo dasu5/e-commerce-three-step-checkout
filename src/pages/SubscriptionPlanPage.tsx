@@ -20,14 +20,14 @@ const SubscriptionPlanPage = () => {
     if (subscribedPlan) {
       dispatch(UserSliceActions.setStepCount(stepNumber + 1));
       navigate("/thank-you");
-      localStorage.removeItem(localStorageKeys.LOGGED_USER);
-      localStorage.removeItem(localStorageKeys.GRADE);
-      localStorage.removeItem(localStorageKeys.SUBSCRIPTION_PLAN);
-      localStorage.removeItem(localStorageKeys.COMPLETED_STEP);
-      dispatch(UserSliceActions.clearUser());
-      dispatch(UserSliceActions.clearGrade());
-      dispatch(UserSliceActions.clearSubscribedPlan());
-      dispatch(UserSliceActions.clearStepCount());
+      // localStorage.removeItem(localStorageKeys.LOGGED_USER);
+      // localStorage.removeItem(localStorageKeys.GRADE);
+      // localStorage.removeItem(localStorageKeys.SUBSCRIPTION_PLAN);
+      // localStorage.removeItem(localStorageKeys.COMPLETED_STEP);
+      // dispatch(UserSliceActions.clearUser());
+      // dispatch(UserSliceActions.clearGrade());
+      // dispatch(UserSliceActions.clearSubscribedPlan());
+      // dispatch(UserSliceActions.clearStepCount());
     }
   };
 

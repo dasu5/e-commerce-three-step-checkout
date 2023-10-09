@@ -22,6 +22,7 @@ function App() {
 
   // route navigation handling for user to carry on where left off
   useEffect(() => {
+    if (!user && !grade && !plan && !stepNumber) navigate("/");
     if (user && Number(stepNumber) === 1) {
       dispatch(UserSliceActions.setUserName(JSON.parse(user)));
       dispatch(UserSliceActions.setStepCount(Number(stepNumber)));
@@ -34,6 +35,10 @@ function App() {
       navigate("/subscription");
     }
     if (user && grade && plan && Number(stepNumber) === 3) {
+      dispatch(UserSliceActions.setUserName(JSON.parse(user)));
+      dispatch(UserSliceActions.setGrade(JSON.parse(grade)));
+      dispatch(UserSliceActions.setSubscribedPlan(JSON.parse(plan)));
+      dispatch(UserSliceActions.setStepCount(Number(stepNumber)));
       navigate("/thank-you");
     }
   }, [user, grade, plan, stepNumber]);
@@ -51,6 +56,14 @@ function App() {
       dispatch(UserSliceActions.clearStepCount());
       navigate("/");
     } else {
+      localStorage.removeItem(localStorageKeys.LOGGED_USER);
+      localStorage.removeItem(localStorageKeys.GRADE);
+      localStorage.removeItem(localStorageKeys.SUBSCRIPTION_PLAN);
+      localStorage.removeItem(localStorageKeys.COMPLETED_STEP);
+      dispatch(UserSliceActions.clearUser());
+      dispatch(UserSliceActions.clearGrade());
+      dispatch(UserSliceActions.clearSubscribedPlan());
+      dispatch(UserSliceActions.clearStepCount());
       navigate("/");
     }
   };

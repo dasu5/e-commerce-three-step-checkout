@@ -5,7 +5,6 @@ import { GradeDetails } from "../data/GradeDetails";
 import TestWithMockDataPlans from "./mock-data/TestWithMockDataPlan";
 import { SubscriptionPlanDetails } from "../data/SubscriptionPlanDetails";
 import LoginPageContent from "../components/login-page/LoginPageContent";
-import EmailForm from "../components/email-form/EmailForm";
 
 test("Login page", () => {
   // render the component on virtual dom
@@ -16,7 +15,7 @@ test("Login page", () => {
 });
 
 test("Emial form", () => {
-  render(<EmailForm />);
+  render(<LoginPageContent />);
   const email = screen.getByTestId("email");
   const submit = screen.getByTestId("on-submit");
 

@@ -1,6 +1,5 @@
 import { Button, Grid } from "@mui/material";
 import { ReactNode } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
 
 interface IMainLayoutProps {
   children: ReactNode;
@@ -9,24 +8,12 @@ interface IMainLayoutProps {
   handleNextPage?(): void;
 }
 
-type Inputs = {
-  username: string;
-  grade: string;
-  plan: string;
-};
-
 const MainLayout = ({
   children,
   showActions = false,
   handleGoBack,
   handleNextPage,
 }: IMainLayoutProps) => {
-  const { handleSubmit } = useForm<Inputs>();
-
-  const onSubmit: SubmitHandler<Inputs> = () => {
-    console.log("submit");
-  };
-
   return (
     <Grid
       container
@@ -48,14 +35,7 @@ const MainLayout = ({
         padding={3}
       >
         {showActions && (
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            style={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "space-around",
-            }}
-          >
+          <Grid item xs={12} display="flex" justifyContent="space-around">
             <Grid item>
               <Button
                 variant="outlined"
@@ -75,7 +55,7 @@ const MainLayout = ({
                 Next
               </Button>
             </Grid>
-          </form>
+          </Grid>
         )}
       </Grid>
     </Grid>
