@@ -38,7 +38,10 @@ const GradeConfirmationPageContent = () => {
       width="50%"
     >
       <Grid item xs={12}>
-        <PageTitle title="CONFIRM YOUR CHILD'S GRADE LEVEL" />
+        <PageTitle
+          title="CONFIRM YOUR CHILD'S GRADE LEVEL"
+          data-testid="GRADE_PAGE_TITLE"
+        />
       </Grid>
       <Grid item>
         {GradeDetails.map((item) => (

@@ -19,9 +19,7 @@ describe("GradeConfirmationPageContent component", () => {
         <GradeConfirmationPageContent />
       </Provider>
     );
-    expect(
-      screen.getByText("CONFIRM YOUR CHILD'S GRADE LEVEL")
-    ).toBeInTheDocument();
+    expect(screen.getByTestId("GRADE_PAGE_TITLE")).toBeInTheDocument();
   });
 
   it("handles grade selection and updates Redux and localStorage", () => {
