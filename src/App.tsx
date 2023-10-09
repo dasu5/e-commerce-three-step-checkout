@@ -44,7 +44,7 @@ function App() {
   }, [user, grade, plan, stepNumber]);
 
   // logout
-  const handleLogin = () => {
+  const handleLogOut = () => {
     if (userName && Number(stepNumber) !== 3) {
       localStorage.removeItem(localStorageKeys.LOGGED_USER);
       localStorage.removeItem(localStorageKeys.GRADE);
@@ -72,8 +72,8 @@ function App() {
     <>
       <Header
         logo={Logo}
-        handleLogin={handleLogin}
-        handleHomeRedirection={handleLogin}
+        handleLogOut={handleLogOut}
+        handleHomeRedirection={handleLogOut}
       />
 
       <Routes>

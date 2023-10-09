@@ -11,11 +11,15 @@ import { useAppSelector } from "../../hooks/ReduxHooks";
 
 interface IHeaderProps {
   logo: string;
-  handleLogin(): void;
+  handleLogOut(): void;
   handleHomeRedirection(): void;
 }
 
-const Header = ({ logo, handleLogin, handleHomeRedirection }: IHeaderProps) => {
+const Header = ({
+  logo,
+  handleLogOut,
+  handleHomeRedirection,
+}: IHeaderProps) => {
   const { userName } = useAppSelector((state) => state.user);
 
   return (
@@ -46,7 +50,7 @@ const Header = ({ logo, handleLogin, handleHomeRedirection }: IHeaderProps) => {
             </Typography>
             <Button
               variant="outlined"
-              onClick={handleLogin}
+              onClick={handleLogOut}
               sx={{ textTransform: "none" }}
             >
               {userName ? "Logout" : "Login"}
